@@ -22,4 +22,4 @@ jobs:
         cache: maven
         
     - name: Execute Tests
-      run: mvn clean test -Dsuite=suite -x
+      run: mvn clean test -Dsuite=suite
