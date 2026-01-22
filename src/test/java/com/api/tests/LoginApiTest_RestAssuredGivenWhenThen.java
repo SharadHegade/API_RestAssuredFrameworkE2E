@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.*;
 import io.restassured.response.Response;
 
 
-public class LoginApiTest2 {
+public class LoginApiTest_RestAssuredGivenWhenThen {
 	
 	@Test
 	
