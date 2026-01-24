@@ -69,5 +69,5 @@ jobs:
           Regards,
           CI Pipeline
         to: sharad2109@outlook.com
-        from: ci-notify@sendgrid.com
+        from: sharad2109@outlook.com
     
