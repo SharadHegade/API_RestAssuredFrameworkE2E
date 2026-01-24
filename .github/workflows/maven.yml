@@ -50,7 +50,7 @@ jobs:
       if: always()
       uses: dawidd6/action-send-mail@v3
       with:
-        server_address: smtp.office365.com
+        server_address: smtp.sendgrid.net
         server_port: 587
         secure: false
         username: ${{ secrets.EMAIL_USERNAME }}
@@ -69,5 +69,5 @@ jobs:
           Regards,
           CI Pipeline
         to: sharad2109@outlook.com
-        from: GitHub CI
+        from: ci-notify@sendgrid.com
     
