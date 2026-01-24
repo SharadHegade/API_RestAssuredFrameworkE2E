@@ -45,3 +45,28 @@ jobs:
         name: TestNG Results
         path: target/surefire-reports/junitreports/TEST-*.xml
         reporter: java-junit   
+
+    - name: Send Test Report Email
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "API Automation Test Results - ${{ github.run_number }}"
+        body: |
+          Hi Team,
+
+          API automation Sanity Test execution is completed.
+
+          Test results are published in GitHub Actions.
+          Please refer to the link below:
+
+          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Regards,
+          CI Pipeline
+        to: yourmail@gmail.com
+        from: GitHub CI
+    
