@@ -6,6 +6,10 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  schedule:
+    # Runs twice: daily at 6 PM UTC/11.30IST and 3 AM UTC
+    - cron: '0 18 * * *'     # Daily at 6 PM UTC/ 11:30 PM IST ( * * * indicates,every single month,date,day
+    - cron: '0 3 * * *'  # Monday and Thursday at 3 AM UTC/ 8.30 AP IST
 
 jobs:
   build:
@@ -23,3 +27,9 @@ jobs:
         
     - name: Execute Tests
       run: mvn clean test -Dsuite=suite -X
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v6.0.0
+      with:
+       name: Logs
+       path: logs/
