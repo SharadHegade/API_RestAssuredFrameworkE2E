@@ -38,8 +38,8 @@ jobs:
         name: allure-report
         path: allure-report   # matches your pom.xml config
 
-    - name: Zip Allure Report
-      run: zip -r allure-report.zip allure-report
+    #- name: Zip Allure Report
+    # run: zip -r allure-report.zip allure-report
 
     - name: Upload a Build Artifact
       if: always()  # Tests fail or pass, LOGS should be archived
