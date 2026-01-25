@@ -50,11 +50,11 @@ jobs:
       if: always()
       uses: dawidd6/action-send-mail@v3
       with:
-        server_address: smtp.sendgrid.net
+        server_address: smtp.gmail.com
         server_port: 587
         secure: false
-        username: ${{ secrets.SENDGRID_USERNAME }}
-        password: ${{ secrets.SENDGRID_PASSWORD }}
+        username: ${{ secrets.GMAIL_USERNAME }}
+        password: ${{ secrets.GMAIL_PASSWORD }}
         subject: "API Automation Test Results - ${{ github.run_number }}"
         body: |
           Hi Team,
@@ -69,5 +69,5 @@ jobs:
           Regards,
           CI Pipeline
         to: sharad2109@outlook.com
-        from: sharad2109@outlook.com
+        from: sharath2109@gmail.com
     
