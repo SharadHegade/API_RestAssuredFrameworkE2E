@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       checks: write
       issues: write
     steps:
@@ -28,20 +28,27 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Execute Tests
-      run: mvn clean test -Dsuite=suite -X
-
-    - name: Generate Allure Report
-      run: mvn allure:report
-
+    - name: Execute Tests & Generate Allure Report
+      if: always()
+      # run: mvn clean test -Dsuite=suite -X
+      run: mvn clean test -Dsuite=suite allure:report
+  
     - name: Upload Allure Report
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: allure-report
         path: allure-report   # matches your pom.xml config
 
-    - name: Zip Allure Report
-      run: zip -r allure-report.zip allure-report
+    #- name: Zip Allure Report
+    # run: zip -r allure-report.zip allure-report
+
+    - name: Deploy Allure Report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-report
 
     - name: Upload a Build Artifact
       if: always()  # Tests fail or pass, LOGS should be archived
