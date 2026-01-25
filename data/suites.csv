@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Jan 25 16:55:40 UTC 2026","Sun Jan 25 16:55:42 UTC 2026","1911","API Suite","Auth and Login Tests","com.api.tests.LoginApiTest3_SOM","com.api.tests.LoginApiTest3_SOM","loginTest","To verify Login API is working !!!",""
+"passed","Sun Jan 25 16:55:42 UTC 2026","Sun Jan 25 16:55:43 UTC 2026","1058","API Suite","Get Profile API Tests","com.api.tests.GetProfileRequestTest","com.api.tests.GetProfileRequestTest","getProfileInfoTest","To verify UserManagement/progile API !!!",""
+"passed","Sun Jan 25 16:55:43 UTC 2026","Sun Jan 25 16:55:44 UTC 2026","492","API Suite","Forgot Password API Tests","com.api.tests.ForgotPasswordTest","com.api.tests.ForgotPasswordTest","verfiyForgotPassword","To verify Authentication/Forgot Password API is working !!!",""
