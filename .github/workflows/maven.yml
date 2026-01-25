@@ -31,6 +31,18 @@ jobs:
     - name: Execute Tests
       run: mvn clean test -Dsuite=suite -X
 
+    - name: Generate Allure Report
+      run: mvn allure:report
+
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-report
+        path: allure-report   # matches your pom.xml config
+
+    - name: Zip Allure Report
+      run: zip -r allure-report.zip allure-report
+
     - name: Upload a Build Artifact
       if: always()  # Tests fail or pass, LOGS should be archived
       uses: actions/upload-artifact@v6.0.0
@@ -70,4 +82,5 @@ jobs:
           CI Pipeline
         to: sharad2109@outlook.com
         from: sharath2109@gmail.com
-        attachments: target/surefire-reports/junitreports/TEST-*.xml
+        attachments: allure-report.zip
+
