@@ -6,12 +6,19 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  schedule:
+    # Runs twice: daily at 6 PM UTC/11.30IST and 3 AM UTC
+    - cron: '0 18 * * *'     # Daily at 6 PM UTC/ 11:30 PM IST ( * * * indicates,every single month,date,day
+    - cron: '0 3 * * *'  # Monday and Thursday at 3 AM UTC/ 8.30 AP IST
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      checks: write
+      issues: write
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 11
@@ -23,3 +30,57 @@ jobs:
         
     - name: Execute Tests
       run: mvn clean test -Dsuite=suite -X
+
+    - name: Generate Allure Report
+      run: mvn allure:report
+
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-report
+        path: allure-report   # matches your pom.xml config
+
+    - name: Zip Allure Report
+      run: zip -r allure-report.zip allure-report
+
+    - name: Upload a Build Artifact
+      if: always()  # Tests fail or pass, LOGS should be archived
+      uses: actions/upload-artifact@v6.0.0
+      with:
+       name: Logs
+       path: logs/
+
+    - name: Publish Test Report
+      if: always()
+      uses: dorny/test-reporter@v1
+      with:
+        name: TestNG Results
+        path: target/surefire-reports/junitreports/TEST-*.xml
+        reporter: java-junit   
+
+    - name: Send Test Report Email
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        secure: false
+        username: ${{ secrets.GMAIL_USERNAME }}
+        password: ${{ secrets.GMAIL_PASSWORD }}
+        subject: "API Automation Test Results - ${{ github.run_number }}"
+        body: |
+          Hi Team,
+
+          API automation Sanity Test execution is completed.
+
+          Test results are published in GitHub Actions.
+          Please refer to the link below:
+
+          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Regards,
+          CI Pipeline
+        to: sharad2109@outlook.com
+        from: sharath2109@gmail.com
+        attachments: allure-report.zip
+
