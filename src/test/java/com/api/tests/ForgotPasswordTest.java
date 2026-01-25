@@ -15,6 +15,7 @@ public class ForgotPasswordTest {
 		AuthService authService=new AuthService();
 		Response response=authService.forgotPassword("sharad2109@gmail.com");
 		System.out.println(response.asPrettyString());
+		System.out.println("ForgotPassword test running on Thread: " + Thread.currentThread().getId());
 	}
 	
 }

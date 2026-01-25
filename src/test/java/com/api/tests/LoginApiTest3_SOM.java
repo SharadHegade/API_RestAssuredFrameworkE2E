@@ -14,7 +14,9 @@ import io.restassured.response.Response;
 @Listeners(com.api.listeners.TestListener.class)
 public class LoginApiTest3_SOM {
 	
-	@Test(description="To verify Login API is working !!!")
+	@Test(retryAnalyzer = com.api.utils.RetryAnalyzer.class,
+		  description="To verify Login API is working !!!")
+
 	public void loginTest()
 	{
 		
@@ -29,7 +31,8 @@ public class LoginApiTest3_SOM {
 		System.out.println("Token : " +loginResponse.getToken());
 		System.out.println("Email  : " +loginResponse.getEmail());
 		System.out.println("ID  : " +loginResponse.getId());
-		
+		System.out.println("Login Test running on Thread: " + Thread.currentThread().getId());
+
 		//Assert
 		Assert.assertTrue(loginResponse.getToken()!=null);
 		Assert.assertEquals(loginResponse.getEmail(),"sharad2109@gmail.com");

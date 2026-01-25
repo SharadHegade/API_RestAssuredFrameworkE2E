@@ -30,6 +30,8 @@ public class GetProfileRequestTest {
 		System.out.println(userProfileResponse.getEmail());
 		System.out.println(userProfileResponse.getMobileNumber());
 		Assert.assertEquals(response.getStatusCode(), 200);
+		
+		System.out.println("GetProfileInfo test running on Thread: " + Thread.currentThread().getId());
 	}
 
 }

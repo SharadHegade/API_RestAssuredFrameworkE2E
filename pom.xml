@@ -22,7 +22,9 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<systemPropertyVariables>
+					<parallel>methods</parallel>
+                    <threadCount>5</threadCount>
+                    <systemPropertyVariables>
 						<allure.results.directory>
 							${project.build.directory}/allure-results
 						</allure.results.directory>
@@ -104,7 +106,6 @@
 			<artifactId>allure-testng</artifactId>
 			<version>2.24.0</version>
 		</dependency>
-
 
 	</dependencies>
 </project>
