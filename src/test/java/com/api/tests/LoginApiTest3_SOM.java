@@ -3,6 +3,8 @@ package com.api.tests;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 
 import com.api.base.AuthService;
 import com.api.models.request.LoginRequest;
