@@ -52,7 +52,7 @@ jobs:
       with:
         server_address: smtp.sendgrid.net
         server_port: 587
-        secure: false
+        secure: true
         username: ${{ secrets.SENDGRID_USERNAME }}
         password: ${{ secrets.SENDGRID_PASSWORD }}
         subject: "API Automation Test Results - ${{ github.run_number }}"
