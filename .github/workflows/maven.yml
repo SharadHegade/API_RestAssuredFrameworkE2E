@@ -29,10 +29,12 @@ jobs:
         cache: maven
         
     - name: Execute Tests & Generate Allure Report
+      if: always()
       # run: mvn clean test -Dsuite=suite -X
       run: mvn clean test -Dsuite=suite allure:report
   
     - name: Upload Allure Report
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: allure-report
@@ -40,18 +42,6 @@ jobs:
 
     #- name: Zip Allure Report
     # run: zip -r allure-report.zip allure-report
-
-    - name: Generate Allure Report
-      if: always()
-      run: |
-       mvn allure:report
-       
-    - name: Upload Allure Report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-       name: Allure-Report
-       path: target/allure-report
 
     - name: Upload a Build Artifact
       if: always()  # Tests fail or pass, LOGS should be archived
