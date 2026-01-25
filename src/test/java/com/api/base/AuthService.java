@@ -8,7 +8,7 @@ import com.api.models.request.SignUpRequest;
 
 import io.restassured.response.Response;
 
-public class AuthService extends BaseService_withoutThreadSafe {
+public class AuthService extends BaseService {
 	
 	//Constant variable 
 	private static final String BASE_PATH="/api/auth/";

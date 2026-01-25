@@ -4,7 +4,7 @@ import com.api.models.response.ProfileRequest;
 
 import io.restassured.response.Response;
 
-public class UserProfileManagementService extends BaseService_withoutThreadSafe{
+public class UserProfileManagementService extends BaseService{
 	
 	//Constant variable 
 	private static final String BASE_PATH="/api/users";
