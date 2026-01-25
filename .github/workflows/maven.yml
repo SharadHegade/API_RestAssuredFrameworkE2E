@@ -70,4 +70,4 @@ jobs:
           CI Pipeline
         to: sharad2109@outlook.com
         from: sharath2109@gmail.com
-    
+        attachments: target/surefire-reports/junitreports/TEST-*.xml
