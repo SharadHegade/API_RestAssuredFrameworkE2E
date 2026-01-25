@@ -43,6 +43,13 @@ jobs:
     #- name: Zip Allure Report
     # run: zip -r allure-report.zip allure-report
 
+    - name: Deploy Allure Report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-report
+
     - name: Upload a Build Artifact
       if: always()  # Tests fail or pass, LOGS should be archived
       uses: actions/upload-artifact@v6.0.0
