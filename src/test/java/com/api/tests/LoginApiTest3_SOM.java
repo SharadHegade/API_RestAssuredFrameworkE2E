@@ -32,6 +32,7 @@ public class LoginApiTest3_SOM {
 		System.out.println("Email  : " +loginResponse.getEmail());
 		System.out.println("ID  : " +loginResponse.getId());
 		System.out.println("Login Test running on Thread: " + Thread.currentThread().getId());
+		System.out.println("Login Test has been passed !!!");
 
 		//Assert
 		Assert.assertTrue(loginResponse.getToken()!=null);
